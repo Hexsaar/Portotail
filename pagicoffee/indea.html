@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagi Coffee</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="assets/Logo.jpg" type="image/x-icon">
+</head>
+<body class="bg-white">
+
+ 
+ <!-- HEADER UTAMA -->
+  <header class="w-full bg-white">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- LOGO -->
+      <div class="flex items-center gap-2">
+        <img src="assets/Logo.jpg" alt="Pagi Coffee" class="w-20 h-10 rounded-full object-cover shadow-md">
+      </div>
+
+      <!-- MENU + CONTACT (Sejajar) -->
+      <div class="hidden md:flex items-center gap-8">
+        <!-- MENU -->
+        <nav class="flex items-center gap-8 text-sm text-gray-700">
+          <a href="#home" class="hover:text-[#5A3A2E]">Home</a>
+          <a href="#menu" class="hover:text-[#5A3A2E]">Menu</a>
+          <a href="#about" class="hover:text-[#5A3A2E]">About</a>
+          <a href="#gallery" class="hover:text-[#5A3A2E]">Gallery</a>
+        </nav>
+          <!-- DROPDOWN MENU -->
+          <div class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition duration-200">
+            <a href="mailto:info@pagicoffee.com" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#5A3A2E] hover:text-white">Email</a>
+            <a href="https://wa.me/62123456789" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#5A3A2E] hover:text-white">WhatsApp</a>
+            <a href="tel:+62123456789" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#5A3A2E] hover:text-white">Telepon</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- HERO IMAGE CARD -->
+  <div class="relative w-full flex justify-center py-12">
+
+    <div class="relative justify-center w-[1200px] h-[600px] rounded-[50px] overflow-hidden shadow-2xl">
+      <!-- IMAGE BACKGROUND -->
+      <img src="https://i.pinimg.com/1200x/e0/09/08/e00908e9d7c4919287edda4d863e23b4.jpg" alt="Coffee" class="w-full h-full object-cover">
+      
+      <!-- DARK OVERLAY -->
+      <div class="absolute inset-0 bg-black bg-opacity-40 rounded-[50px]"></div>
+      
+      <!-- CONTENT -->
+      <div class="absolute inset-12 flex flex-col justify-center items-start p- rounded-[50px]">
+        <!-- MAIN TEXT -->
+        <h1 class="text-white text-6xl font-serif font-bold leading-tight mb-5" style="font-family: Georgia, serif;">
+          Coffee enak,<br>lezat bergizi
+        </h1>
+        
+        <!-- DESCRIPTION TEXT -->
+        <p class="text-white text-sm leading-relaxed mb-8 max-w-md">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the.
+        </p>
+        
+        <!-- ORDER BUTTON -->
+        <button class="bg-white text-gray-800 px-8 py-3 rounded-full font-semibold text-sm hover:bg-gray-100 transition duration-300 shadow-md">
+          Order now!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full flex justify-center my-10">
+    <div class="w-[90%] border-t border-black/40" style="height:0.5px"></div>
+  </div>
+
+  <!-- MENU TITLE AND CATEGORY SECTION -->
+  <div class="w-full flex flex-col items-start px-12 py-8">
+    <!-- MENU TITLE -->
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">MENU</h2>
+    
+    <!-- CATEGORY BUTTONS -->
+    <div class="flex flex-wrap gap-3 justify-start mb-8">
+      <button class="px-5 py-2 bg-white border-2 border-[#5A3A2E] text-[#5A3A2E] rounded-full font-bold text-xs hover:bg-[#5A3A2E] hover:text-white transition duration-300">
+        BEST MENU
+      </button>
+      <button class="px-5 py-2 bg-[#5A3A2E] text-white rounded-full font-bold text-xs hover:opacity-90 transition duration-300">
+        COFFEE
+      </button>
+      <button class="px-5 py-2 bg-[#5A3A2E] text-white rounded-full font-bold text-xs hover:opacity-90 transition duration-300">
+        NON COFFEE
+      </button>
+      <button class="px-5 py-2 bg-[#5A3A2E] text-white rounded-full font-bold text-xs hover:opacity-90 transition duration-300">
+        COFFEE MILK
+      </button>
+      <button class="px-5 py-2 bg-[#5A3A2E] text-white rounded-full font-bold text-xs hover:opacity-90 transition duration-300">
+        SNACK
+      </button>
+      <button class="px-5 py-2 bg-[#5A3A2E] text-white rounded-full font-bold text-xs hover:opacity-90 transition duration-300">
+        BOTTLE
+      </button>
+    </div>
+  </div>
+
+  <!-- MENU CARDS SECTION -->
+  <div class="w-full flex justify-start px-12 py-8">
+    <div class="grid grid-cols-5 gap-6">
+      <!-- CARD 1 -->
+      <div class="w-56 h-72 rounded-[12px] overflow-hidden relative group cursor-pointer shadow-lg">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="Capucino" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
+          <div class="flex justify-end">
+            <div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Capucino</h3>
+            <p class="text-sm">Rp12.000</p>
+            <div class="text-yellow-400 text-base">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="w-56 h-72 rounded-[12px] overflow-hidden relative group cursor-pointer shadow-lg">
+        <img src="https://i.pinimg.com/1200x/e8/8c/96/e88c963b93c4ee2f3481b3576e2c9395.jpg" alt="Espresso" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
+          <div class="flex justify-end">
+            <div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Espresso</h3>
+            <p class="text-sm">Rp10.000</p>
+            <div class="text-yellow-400 text-base">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="w-56 h-72 rounded-[12px] overflow-hidden relative group cursor-pointer shadow-lg">
+        <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352" alt="Americano" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
+          <div class="flex justify-end">
+            <div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Americano</h3>
+            <p class="text-sm">Rp11.000</p>
+            <div class="text-yellow-400 text-base">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="w-56 h-72 rounded-[12px] overflow-hidden relative group cursor-pointer shadow-lg">
+        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735" alt="Latte" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
+          <div class="flex justify-end">
+            <div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Latte</h3>
+            <p class="text-sm">Rp13.000</p>
+            <div class="text-yellow-400 text-base">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="w-56 h-72 rounded-[12px] overflow-hidden relative group cursor-pointer shadow-lg">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Macchiato" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
+          <div class="flex justify-end">
+            <div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Macchiato</h3>
+            <p class="text-sm">Rp11.500</p>
+            <div class="text-yellow-400 text-base">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+      <div class="w-56 h-72 rounded-[12px] overflow-hidden relative group cursor-pointer shadow-lg">
+        <img src="https://i.pinimg.com/736x/22/8b/72/228b72a03cb98c19063193cf0188a6a3.jpg" alt="Mocha" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
+          <div class="flex justify-end">
+            <div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Mocha</h3>
+            <p class="text-sm">Rp14.000</p>
+            <div class="text-yellow-400 text-base">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 7 -->
+      <div class="w-56 h-72 rounded-[12px] overflow-hidden relative group cursor-pointer shadow-lg">
+        <img src="https://i.pinimg.com/736x/cf/86/85/cf8685f6b02dea31682f696be282f703.jpg" alt="Iced Coffee" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
+          <div class="flex justify-end">
+            <div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Iced Coffee</h3>
+            <p class="text-sm">Rp12.500</p>
+            <div class="text-yellow-400 text-base">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 8 -->
+      <div class="w-56 h-72 rounded-[12px] overflow-hidden relative group cursor-pointer shadow-lg">
+        <img src="https://i.pinimg.com/1200x/4b/27/f9/4b27f9856191d5d6dd1fca9861e58127.jpg" alt="Matcha Latte" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
+          <div class="flex justify-end">
+            <div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Matcha Latte</h3>
+            <p class="text-sm">Rp15.000</p>
+            <div class="text-yellow-400 text-base">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 9 -->
+      <div class="w-56 h-72 rounded-[12px] overflow-hidden relative group cursor-pointer shadow-lg">
+        <img src="https://down-id.img.susercontent.com/file/id-11134207-7r992-lzgx01miyg5h74@resize_w450_nl.webp" alt="Affogato" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
+          <div class="flex justify-end">
+            <div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Affogato</h3>
+            <p class="text-sm">Rp13.500</p>
+            <div class="text-yellow-400 text-base">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 10 -->
+      <div class="w-56 h-72 rounded-[12px] overflow-hidden relative group cursor-pointer shadow-lg">
+        <img src="https://i.pinimg.com/1200x/0c/c8/bf/0cc8bfcc3cba9967863f5fd0c6b5e7c3.jpg" alt="Flat White" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
+          <div class="flex justify-end">
+            <div class="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">→</div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold">Flat White</h3>
+            <p class="text-sm">Rp14.500</p>
+            <div class="text-yellow-400 text-base">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full flex justify-center my-10">
+    <div class="w-[90%] border-t border-black/40" style="height:0.5px"></div>
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <div class="w-full flex justify-start px-12 py-12">
+    <div class="flex gap-12 items-center">
+      <!-- IMAGE -->
+      <div class="flex-shrink-0">
+        <img 
+          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&w=900&q=80"
+          alt="Pagi Coffee"
+          class="rounded-[11px] w-[400px] h-[400px] object-cover shadow-lg">
+      </div>
+
+      <!-- TEXT CONTENT -->
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">About Pagi Coffee</h2>
+        <p class="text-gray-700 text-sm leading-relaxed mb-4">
+          Pagi Coffee adalah kafe modern yang menyajikan kopi terbaik dengan kualitas premium. Kami berkomitmen untuk memberikan pengalaman minum kopi yang tak terlupakan kepada setiap pelanggan kami.
+        </p>
+        <p class="text-gray-700 text-sm leading-relaxed mb-4">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <p class="text-gray-700 text-sm leading-relaxed">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT SECTION 2 - REVERSED LAYOUT -->
+  <div class="w-full flex justify-start px-12 py-12">
+    <div class="flex gap-12 items-center">
+      <!-- TEXT CONTENT -->
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose Pagi Coffee?</h2>
+        <p class="text-gray-700 text-sm leading-relaxed mb-4">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <p class="text-gray-700 text-sm leading-relaxed mb-4">
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p class="text-gray-700 text-sm leading-relaxed mb-6">
+          Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+        </p>
+        <!-- RATING STARS -->
+        <div class="flex items-center gap-2">
+          <div class="text-yellow-400 text-2xl">★★★★★</div>
+          <span class="text-gray-600 text-sm font-semibold">5.0/5 - Recommended</span>
+        </div>
+      </div>
+
+      <!-- IMAGE -->
+      <div class="flex-shrink-0">
+        <img 
+          src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&w=900&q=80"
+          alt="Pagi Coffee Experience"
+          class="rounded-[11px] w-[400px] h-[400px] object-cover shadow-lg">
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full flex justify-center my-10">
+    <div class="w-[90%] border-t border-black/40" style="height:0.5px"></div>
+  </div>
+
+  <!-- GALLERY SECTION -->
+  <div id="gallery" class="w-full flex flex-col items-start px-12 py-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">GALLERY</h2>
+  </div>
+
+  <div class="w-full flex justify-start px-12 py-6">
+    <div
+      class="grid gap-3"
+      style="
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 180px);
+        grid-template-areas:
+          'a b b c'
+          'd b b c'
+          'd e f g'
+          'h i j g';
+      "
+    >
+
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&w=900&q=80"
+        class="rounded-[11px] shadow-lg w-full h-full object-cover [grid-area:a]" />
+
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&w=900&q=80"
+        class="rounded-[11px] shadow-lg w-full h-full object-cover [grid-area:b]" />
+
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&w=900&q=80"
+        class="rounded-[11px] shadow-lg w-full h-full object-cover [grid-area:c]" />
+
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&w=900&q=80"
+        class="rounded-[11px] shadow-lg w-full h-full object-cover [grid-area:d]" />
+
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&w=900&q=80"
+        class="rounded-[11px] shadow-lg w-full h-full object-cover [grid-area:e]" />
+
+      <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?auto=format&w=900&q=80"
+        class="rounded-[11px] shadow-lg w-full h-full object-cover [grid-area:f]" />
+
+      <img src="https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?auto=format&w=900&q=80"
+        class="rounded-[11px] shadow-lg w-full h-full object-cover [grid-area:g]" />
+
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=900&q=80"
+        class="rounded-[11px] shadow-lg w-full h-full object-cover [grid-area:h]" />
+
+      <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&w=900&q=80"
+        class="rounded-[11px] shadow-lg w-full h-full object-cover [grid-area:i]" />
+
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&w=900&q=80"
+        class="rounded-[11px] shadow-lg w-full h-full object-cover [grid-area:j]" />
+
+    </div>
+  </div>  
+
+</body>
+</html>

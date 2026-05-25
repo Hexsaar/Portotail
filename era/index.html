@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Era Studio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/496197760_17843267460480413_3339324128278472369_n.jpg">
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#135bec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "serif": ["Playfair Display", "serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+
+        
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+
+    .wavy-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.wavy-line::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,           /* kemiringan */
+    rgba(255,255,255,0.15) 0px, 
+    rgba(255,255,255,0.15) 2px,  /* ketebalan garis */
+    transparent 2px,
+    transparent 16px              /* jarak antar garis */
+  );
+  pointer-events: none;
+}
+
+
+    
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#FFFFFF] font-display text-gray-800">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden p-6 md:p-10">
+<main class="flex flex-col flex-1">
+<header class="w-full">
+<div class="flex items-center justify-between">
+<h2 class="text-gray-900 text-xl font-bold">Dieditraiaja.</h2>
+<button class="md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-gray-900 hover:text-gray-700" href="#">Home</a>
+<a class="text-gray-900 hover:text-gray-700" href="#">Product</a>
+<a class="text-gray-900 hover:text-gray-700" href="#">Contact Us</a>
+</nav>
+<button class="hidden md:block bg-gray-900 text-white text-sm font-medium py-2 px-5 rounded-lg">
+                    Login
+                </button>
+</div>
+</header>
+<div class="flex-1 flex flex-col justify-center items-center mt-12">
+<div class="w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-10">
+<div class="flex flex-col justify-center text-left md:w-1/2" data-aos="fade-up">
+<h1 class="font-serif text-5xl md:text-7xl font-bold text-gray-900 leading-tight" data-aos="fade-up" data-aos-delay="200">
+                        Di ERA<br/>
+                        Ga Harus<br/>
+                        Mahal
+                    </h1>
+<p class="mt-6 text-gray-600 max-w-md" data-aos="fade-up" data-aos-delay="400">
+                        ERA memberikan hasil cepat, rapi, dan tetap terjangkau.
+                        Cocok untuk pelajar, UMKM, dan kreator yang butuh visual keren tanpa harus mahal.
+                    </p>
+<div class="flex items-center gap-4 mt-8">
+<button class="flex items-center justify-center size-12 border border-gray-300 rounded-full">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<span class="text-gray-900 font-medium">Dieditraiaja.</span>
+</div>
+</div>
+<div class="md:w-1/2 flex items-center justify-center relative" data-aos="fade-left">
+    <div class="relative w-full aspect-square max-w-[400px] mx-auto flex items-center justify-center" data-aos="zoom-in" data-aos-delay="200">
+      <img 
+        src="assets/IMG_1120.JPG"
+        alt="foto"
+        class="rounded-[40px] w-full h-full object-cover border border-gray-200 shadow-lg" />
+      <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between gap-2">
+        <button class="bg-white text-gray-900 text-sm font-medium py-3 px-6 rounded-full shadow-lg">
+          Portofolio
+        </button>
+        <button class="flex items-center gap-2 bg-black/20 backdrop-blur-sm text-white text-sm font-medium py-3 pl-6 pr-4 rounded-full border border-white/30">
+          <span>Contact Us</span>
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+</div>
+
+</div>
+</div>
+</main>
+
+<div class="w-full flex justify-center my-10">
+  <div class="w-[90%] border-t border-black/40" style="height:0.5px"></div>
+</div>
+</div>
+
+
+
+
+<!-- SERVICE GRID -->
+<section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="grid md:grid-cols-3 grid-cols-1 gap-6">
+
+        <!-- left big panel -->
+        <div class="bg-black text-white rounded-3xl p-10 flex flex-col justify-between" data-aos="fade-up">
+            <h2 class="text-5xl font-bold leading-tight">
+                Editinrai<br>
+                Creative<br>
+                Studio
+            </h2>
+
+            <a href="#" class="flex items-center gap-3 mt-6 text-lg">
+                About us
+                <span class="border w-10 ml-3"></span>
+                <div class="w-10 h-10 border rounded-full flex items-center justify-center">→</div>
+            </a>
+        </div>
+
+        <!-- middle panel -->
+        <div class="overflow-hidden rounded-3xl relative" data-aos="fade-up" data-aos-delay="200">
+            <img src="assets/IMG_1120.JPG" alt="Foto"
+                 class="h-full object-cover">
+            <p class="absolute top-6 left-6 text-white text-xl font-semibold">School Yearbook</p>
+        </div>
+
+        <!-- right small panels -->
+        <div class="grid gap-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="bg-purple-200 rounded-3xl p-6 flex flex-col" data-aos="fade-up">
+                <h3 class="text-xl font-semibold mb-2">Merchandise</h3>
+                <p class="text-gray-700">Kostum Merchandise</p>
+            </div>
+
+            <div class="bg-orange-300 rounded-3xl p-6 flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-xl font-semibold mb-2">3D Modeling</h3>
+                <p class="text-gray-700">Asset & Modeling</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="w-full flex justify-center my-10">
+  <div class="w-[90%] border-t border-black/40" style="height:0.5px"></div>
+</div>
+</div>
+
+<section class="max-w-7xl mx-auto px-6 py-28" data-aos="fade-up">
+    <h2 class="text-5xl font-bold text-center leading-tight" data-aos="fade-up">
+        Coba <i>aplikasi</i> kami untuk menikmati <i>kenangan</i><br>
+        menjadi lebih <i>berwarna</i> & menyenangkan.
+    </h2>
+
+    <p class="mt-10 max-w-lg text-gray-600 text-center mx-auto" data-aos="fade-up" data-aos-delay="200">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Donec fermentum nisl malesuada interdum.
+    </p>
+</section>
+
+<footer id="contact" class="bg-black text-white py-16 mt-10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+
+        <div>
+            <h2 class="text-3xl font-bold">Editinrai.</h2>  
+            <p class="mt-4 text-gray-400">Creative multimedia service.</p>
+        </div>
+
+        <div>
+            <h3 class="text-lg font-semibold mb-3">Menu</h3>
+            <ul class="space-y-2 text-gray-300">
+                <li><a href="#" class="hover:text-white">Home</a></li>
+                <li><a href="#product" class="hover:text-white">Product</a></li>
+                <li><a href="#contact" class="hover:text-white">Contact</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+            <p class="text-gray-300">Email:@Editinrai.</p>
+            <p class="text-gray-300 mt-1">Phone: +62 812-3456-7890</p>
+        </div>
+    </div>
+
+    <p class="text-center text-gray-500 mt-10 text-sm">
+        © 2025 Editinrai Creative Studio. All Rights Reserved.
+    </p>
+</footer>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: false,
+    offset: 100
+  });
+</script>
+</body>
+</html>
