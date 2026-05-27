@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexsa Arizky S. - Portfolio</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Animasi Utama Fade In untuk Hero */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animasi Marquee Seamless Sempurna */
+        @keyframes marquee-infinite {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .marquee-content {
+            animation: marquee 25s linear infinite;
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* Group container pembungkus utama */
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            user-select: none;
+        }
+
+        /* Setiap blok text bergerak 100% penuh ke kiri */
+        .marquee-content {
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: space-around;
+            min-width: 100%;
+            animation: marquee-infinite 20s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-white text-black antialiased overflow-x-hidden">
+
+    <header class="w-full max-w-7xl mx-auto px-6 py-6 md:px-12 flex justify-between items-center absolute top-0 left-0 right-0 z-50">
+        <div class="text-xl md:text-2xl font-semibold tracking-wide">
+            Hexsa Arizky S.
+        </div>
+        
+        <nav class="hidden md:flex space-x-6 md:space-x-8 text-base md:text-lg font-medium">
+            <a href="../index.html" class="hover:opacity-70 transition-opacity">Home</a>
+            <a href="about.html" class="hover:opacity-70 transition-opacity">About</a>
+            <a href="project.html" class="hover:opacity-70 transition-opacity">Project</a>
+            <a href="contact.html" class="hover:opacity-70 transition-opacity">Contact</a>
+        </nav>
+
+        <button id="menu-btn" class="block md:hidden focus:outline-none z-50 cursor-pointer" aria-label="Toggle Menu">
+            <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7 transition-transform duration-300">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+    </header>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 text-2xl font-semibold tracking-wider transition-all duration-300 translate-x-full opacity-0 md:hidden">
+        <a href="../index.html" class="mobile-link hover:opacity-60 transition-opacity">Home</a>
+        <a href="about.html" class="mobile-link hover:opacity-60 transition-opacity">About</a>
+        <a href="project.html" class="mobile-link hover:opacity-60 transition-opacity">Project</a>
+        <a href="contact.html" class="mobile-link hover:opacity-60 transition-opacity">Contact</a>
+    </div>
+
+    <section id="home" class="w-full h-screen flex flex-col justify-center items-center px-4 relative">
+        <div class="text-center max-w-6xl mx-auto flex flex-col items-center justify-center space-y-6 md:space-y-8 pt-12">
+            
+            <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold italic tracking-tight leading-tight text-center animate-fade-up max-md:whitespace-normal whitespace-nowrap" style="animation-delay: 0.1s;">
+                As a software engineer,<br class="hidden md:block"> what do I create?
+            </h1>
+            
+            <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto leading-relaxed animate-fade-up px-2" style="animation-delay: 0.3s;">
+                I create various MSME website designs and functional websites with simple but user-friendly designs.
+            </p>
+            
+            <div class="pt-2 animate-fade-up" style="animation-delay: 0.5s;">
+    <a href="#project" class="bg-black text-white px-8 py-3 rounded-full font-medium inline-flex items-center space-x-2 hover:bg-gray-800 transition-colors cursor-pointer no-underline">
+        <span>Let's See</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 transform rotate-45">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+        </svg>
+    </a>
+</div>
+        </div>
+    </section>
+
+    <div class="marquee-container py-6 md:py-8 bg-white border-y border-gray-100 group overflow-hidden flex" id="tools-marquee">
+        
+        <div class="marquee-content flex items-center space-x-12 md:space-x-16 pr-12 md:pr-16 group-hover:[animation-play-state:paused]">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300" title="HTML5">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300" title="CSS3">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300" title="JavaScript">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300" title="Tailwind CSS">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300" title="React">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300" title="PHP">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300" title="VS Code">
+            
+            <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg" alt="Gemini AI" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300" title="Gemini AI">
+            
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300" title="Git">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300" title="GitHub">
+        </div>
+
+        <div class="marquee-content flex items-center space-x-12 md:space-x-16 pr-12 md:pr-16 group-hover:[animation-play-state:paused]" aria-hidden="true">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300">
+            
+            <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg" alt="Gemini AI" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300">
+            
+            <img src="https://cdn.jsdelivr.gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" class="h-8 md:h-12 w-auto opacity-100 hover:scale-110 transition-transform duration-300">
+        </div>
+        
+    </div>
+
+    <section id="project" class="w-full py-16 md:py-24 px-4 md:px-12 max-w-7xl mx-auto">
+        <div class="space-y-12 md:space-y-20">
+            
+            <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-center italic">
+                Featured Project.
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-x-24 md:gap-y-20 max-w-4xl mx-auto">
+                
+                <div class="group flex flex-col rounded-xl md:rounded-2xl overflow-hidden shadow-sm bg-gray-50 border border-gray-100 cursor-pointer">
+                    <a href="../dapurmamisa/index.html" target="_blank">
+                        <div class="w-full aspect-[3/4] md:aspect-[2/3] overflow-hidden bg-gray-200">
+                            <img src="../assets/mamisa.png" alt="Dapur Mamisa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
+                        </div>
+                        <div class="bg-[#1a1a1a] text-white px-3 py-3 md:px-6 md:py-5 flex justify-between items-center">
+                            <span class="font-medium text-xs md:text-base tracking-wider uppercase truncate">
+                                Dapur Mamisa
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1.5 transition-transform duration-300 flex-shrink-0 ml-1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="group flex flex-col rounded-xl md:rounded-2xl overflow-hidden shadow-sm bg-gray-50 border border-gray-100 cursor-pointer">
+                    <a href="../era/index.html" target="_blank">
+                        <div class="w-full aspect-[3/4] md:aspect-[2/3] overflow-hidden bg-gray-200">
+                            <img src="../assets/2.png" alt="UMKN Website Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
+                        </div>
+                        <div class="bg-[#1a1a1a] text-white px-3 py-3 md:px-6 md:py-5 flex justify-between items-center">
+                            <span class="font-medium text-xs md:text-base tracking-wider uppercase truncate">
+                                Era Studio
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1.5 transition-transform duration-300 flex-shrink-0 ml-1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="group flex flex-col rounded-xl md:rounded-2xl overflow-hidden shadow-sm bg-gray-50 border border-gray-100 cursor-pointer">
+                    <a href="../kasir.html" target="_blank">
+                        <div class="w-full aspect-[3/4] md:aspect-[2/3] overflow-hidden bg-gray-200">
+                            <img src="../assets/pos.png" alt="Dummy Cashier Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
+                        </div>
+                        <div class="bg-[#1a1a1a] text-white px-3 py-3 md:px-6 md:py-5 flex justify-between items-center">
+                            <span class="font-medium text-xs md:text-base tracking-wider uppercase truncate">
+                                Dummy Cashier
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1.5 transition-transform duration-300 flex-shrink-0 ml-1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="group flex flex-col rounded-xl md:rounded-2xl overflow-hidden shadow-sm bg-gray-50 border border-gray-100 cursor-pointer">
+                    <a href="../company/indea.html" target="_blank">
+                        <div class="w-full aspect-[3/4] md:aspect-[2/3] overflow-hidden bg-gray-200">
+                            <img src="../assets/1.png" alt="UMKN Website Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
+                        </div>
+                        <div class="bg-[#1a1a1a] text-white px-3 py-3 md:px-6 md:py-5 flex justify-between items-center">
+                            <span class="font-medium text-xs md:text-base tracking-wider uppercase truncate">
+                                Company Profile
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 md:w-5 md:h-5 transform group-hover:translate-x-1.5 transition-transform duration-300 flex-shrink-0 ml-1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full py-16 md:py-24 px-4 md:px-12 max-w-7xl mx-auto border-t border-gray-50">
+        <div class="space-y-12 md:space-y-20">
+            
+            <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-center italic">
+                UI/UX Design Project.
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-12 max-w-5xl mx-auto">
+                
+                <div onclick="openModal('../assets/companydetail.png', 'Pagi Coffee')" class="relative group aspect-square w-full rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-gray-100 shadow-sm cursor-pointer">
+                    <img src="../assets/company1.png" alt="Pagi Coffee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    
+                    <div class="absolute top-0 left-0 right-0 p-4 md:p-8 flex justify-between items-center bg-gradient-to-b from-black/50 via-black/10 to-transparent">
+                        <span class="text-white text-xs sm:text-sm md:text-2xl font-semibold tracking-wide drop-shadow-sm truncate pr-2">
+                            Pagi Coffee
+                        </span>
+                        
+                        <div class="w-7 h-7 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-black shadow-md transform group-hover:rotate-45 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3 h-3 md:w-6 md:h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal('../assets/formdetail.png', 'Form Pendaftaran')" class="relative group aspect-square w-full rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-gray-100 shadow-sm cursor-pointer">
+                    <img src="../assets/form.png" alt="Form Pendaftaran" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    
+                    <div class="absolute top-0 left-0 right-0 p-4 md:p-8 flex justify-between items-center bg-gradient-to-b from-black/50 via-black/10 to-transparent">
+                        <span class="text-white text-xs sm:text-sm md:text-2xl font-semibold tracking-wide drop-shadow-sm truncate pr-2">
+                            Form Pendaftaran
+                        </span>
+                        
+                        <div class="w-7 h-7 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-black shadow-md transform group-hover:rotate-45 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3 h-3 md:w-6 md:h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal('../assets/ekskuldetail.png', 'Smartkul')" class="relative group aspect-square w-full rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-gray-100 shadow-sm cursor-pointer">
+                    <img src="../assets/smartkul.png" alt="Pagi Coffee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    
+                    <div class="absolute top-0 left-0 right-0 p-4 md:p-8 flex justify-between items-center bg-gradient-to-b from-black/50 via-black/10 to-transparent">
+                        <span class="text-white text-xs sm:text-sm md:text-2xl font-semibold tracking-wide drop-shadow-sm truncate pr-2">
+                            Smartkul
+                        </span>
+                        
+                        <div class="w-7 h-7 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-black shadow-md transform group-hover:rotate-45 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3 h-3 md:w-6 md:h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div onclick="openModal('../assets/dapurdetail.png', 'Dapur Mamisa')" class="relative group aspect-square w-full rounded-2xl md:rounded-[2.5rem] overflow-hidden bg-gray-100 shadow-sm cursor-pointer">
+                    <img src="../assets/dapur.png" alt="Dapur Mamisa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    
+                    <div class="absolute top-0 left-0 right-0 p-4 md:p-8 flex justify-between items-center bg-gradient-to-b from-black/50 via-black/10 to-transparent">
+                        <span class="text-white text-xs sm:text-sm md:text-2xl font-semibold tracking-wide drop-shadow-sm truncate pr-2">
+                            Dapur Mamisa
+                        </span>
+                        
+                        <div class="w-7 h-7 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-black shadow-md transform group-hover:rotate-45 group-hover:scale-110 transition-all duration-300 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3 h-3 md:w-6 md:h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="project-modal" class="hidden fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 md:p-10 transition-all duration-300 opacity-0">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-white/50 hover:text-white transition-all cursor-pointer z-[110]" aria-label="Close Modal">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div class="relative max-w-5xl w-full flex flex-col bg-[#1a1a1a] rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl transform scale-95 transition-all duration-300" id="modal-content">
+                <div class="w-full aspect-video bg-black overflow-hidden">
+                    <img id="modal-img" src="" alt="Detail Project" class="w-full h-full object-cover">
+                </div>
+                <div class="px-6 py-4 md:px-8 md:py-6 bg-[#1a1a1a] text-white flex justify-between items-center border-t border-white/5">
+                    <h3 id="modal-title" class="text-base md:text-2xl font-semibold tracking-wide truncate pr-4">Nama Project</h3>
+                    <button onclick="closeModal()" class="text-xs md:text-base font-medium bg-white/10 hover:bg-white/20 px-4 py-1.5 md:px-6 md:py-2 rounded-full transition-colors cursor-pointer border border-white/10 flex-shrink-0">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="w-full h-screen bg-[#000000] text-white px-6 md:px-12 flex flex-col justify-between items-center relative overflow-hidden">
+        
+        <div class="h-20"></div>
+
+        <div class="flex flex-col items-center justify-center">
+            <h2 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold italic tracking-tight text-center leading-tight">
+                Are you interested?
+            </h2>
+        </div>
+
+        <div class="w-full pb-12 flex justify-center">
+            <nav class="flex flex-wrap justify-center gap-x-6 gap-y-4 md:gap-x-10 text-sm sm:text-base md:text-xl font-normal tracking-wide">
+                <a href="../index.html" class="hover:opacity-60 transition-opacity duration-300">Home</a>
+                <a href="about.html" class="hover:opacity-60 transition-opacity duration-300">About</a>
+                <a href="project.html" class="hover:opacity-60 transition-opacity duration-300">Project</a>
+                <a href="contact.html" class="hover:opacity-60 transition-opacity duration-300">Contact</a>
+            </nav>
+        </div>
+        
+    </section>
+
+    <script>
+        function openModal(imageSrc, projectTitle) {
+            const modal = document.getElementById('project-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+
+            modalImg.src = imageSrc;
+            modalTitle.innerText = projectTitle;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+
+            document.body.classList.add('overflow-hidden'); 
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('project-modal');
+            const modalContent = document.getElementById('modal-content');
+
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+
+            document.body.classList.remove('overflow-hidden'); 
+        }
+
+        document.getElementById('project-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.contains('translate-x-0');
+            
+            if (!isOpen) {
+                mobileMenu.classList.remove('translate-x-full', 'opacity-0');
+                mobileMenu.classList.add('translate-x-0', 'opacity-100');
+                hamburgerIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />`;
+                document.body.classList.add('overflow-hidden'); 
+            } else {
+                mobileMenu.classList.remove('translate-x-0', 'opacity-100');
+                mobileMenu.classList.add('translate-x-full', 'opacity-0');
+                hamburgerIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />`;
+                document.body.classList.remove('overflow-hidden'); 
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('translate-x-0')) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

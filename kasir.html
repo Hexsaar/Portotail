@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir - Menu Kopi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+      /* Kategori style dengan hidden radio dan border coklat saat dipilih */
+      .category-radio {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+      }
+      
+      .category-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      
+      .category-item input:checked + label {
+        border: 2px solid #4F2E22 !important;
+        box-shadow: 0 0 0 1px rgba(79, 46, 34, 0.2);
+      }
+      
+      .category-item label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        border-radius: 1rem;
+        padding: 0.75rem 1.25rem;
+        border: 2px solid transparent;
+        transition: all 0.15s ease;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        cursor: pointer;
+      }
+      
+      .category-item label:hover {
+        border-color: #e5d6cc;
+      }
+      
+      /* Scroll order untuk checkout */
+      .scroll-order {
+        max-height: 240px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+      }
+      @media (min-width: 768px) {
+        .scroll-order {
+          max-height: 280px;
+        }
+      }
+      .scroll-order::-webkit-scrollbar {
+        width: 5px;
+      }
+      .scroll-order::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      .scroll-order::-webkit-scrollbar-thumb {
+        background: #d4c4b6;
+        border-radius: 20px;
+      }
+      
+      /* Badge untuk notifikasi cart */
+      .cart-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: #ef4444;
+        color: white;
+        font-size: 10px;
+        font-weight: bold;
+        min-width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 4px;
+        border: 2px solid #4F2E22;
+      }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    
+
+<nav class="bg-neutral-secondary-soft fixed w-full z-20 top-0 start-0 border-b border-default" style="background-color: #4F2E22;">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-3 md:px-4 py-2 md:py-2.5">
+        <div class="flex items-center gap-2 md:gap-3">
+            <button id="hamburger-btn" data-collapse-toggle="navbar-hamburger" type="button" class="inline-flex items-center p-1.5 md:p-2 w-9 h-9 md:w-10 md:h-10 justify-center text-sm text-white rounded-base hover:bg-neutral-tertiary hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary" aria-controls="navbar-hamburger" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5 md:w-6 md:h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/></svg>
+            </button>
+            <span class="text-white font-bold text-base md:text-lg">pagicoffee.id</span>
+            <svg class="w-7 h-7 md:w-8 md:h-8 text-yellow-300 ml-1 md:ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <a href="#" class="flex items-center space-x-2 md:space-x-3 rtl:space-x-reverse">
+            <span class="self-center text-base md:text-xl text-white font-semibold whitespace-nowrap">Ahmad F</span>
+            <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=40&h=40&fit=crop" class="h-7 w-7 md:h-8 md:w-8 rounded-full" alt="Barista" />
+        </a>
+    </div>
+</nav>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="fixed left-0 top-0 w-60 md:w-64 h-screen bg-neutral-secondary-soft transform -translate-x-full transition-transform duration-300 z-30" style="background-color: #4F2E22;">
+    <div class="p-5 md:p-6">
+        <!-- Logo & Close Button -->
+        <div class="flex items-center justify-between mb-6 md:mb-8">
+            <div class="flex items-center gap-2">
+                <svg class="w-8 h-8 text-yellow-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="text-white font-bold">Menu</span>
+            </div>
+            <button id="close-sidebar" class="text-white hover:bg-neutral-tertiary p-2 rounded">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+
+        <!-- Menu Items -->
+        <ul class="space-y-3 md:space-y-4">
+            <li>
+                <a href="#" class="flex items-center gap-3 text-white hover:bg-neutral-tertiary p-2.5 md:p-3 rounded transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-3m2-2l6-5 6 5m2 2l2 3m-2-3v7a2 2 0 01-2 2H5a2 2 0 01-2-2v-7"></path></svg>
+                    <span class="font-bold text-sm md:text-base">Menu</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center gap-3 text-white hover:bg-neutral-tertiary p-2.5 md:p-3 rounded transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="font-bold text-sm md:text-base">History</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center gap-3 text-white hover:bg-neutral-tertiary p-2.5 md:p-3 rounded transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                    <span class="font-bold text-sm md:text-base">Settings</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="cart-sidebar-link" class="flex items-center gap-3 text-white hover:bg-neutral-tertiary p-2.5 md:p-3 rounded transition relative">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <span class="font-bold text-sm md:text-base">Cart</span>
+                    <!-- Badge notifikasi akan muncul di sini -->
+                    <span id="cart-badge" class="cart-badge hidden">0</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Logout Button -->
+        <div class="absolute bottom-5 md:bottom-6 left-5 md:left-6 right-5 md:right-6">
+            <div class="border-t border-white mb-3 md:mb-4"></div>
+            <button class="w-full text-white font-semibold py-2 px-3 md:px-4 rounded transition flex items-center justify-center gap-2 hover:opacity-80 text-sm md:text-base">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Logout
+            </button>
+        </div>
+    </div>
+</aside>
+
+<section class="bg-slate-50 text-slate-900 p-4 md:p-6 lg:p-8 mt-16">
+  <!-- Main container 2 kolom -->
+  <div class="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 lg:gap-8">
+    
+    <!-- KIRI: Area Menu -->
+    <div class="md:col-span-7 lg:col-span-8">
+      <!-- Header All menu + Search -->
+      <div class="mb-4 md:mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <button class="text-lg md:text-[22px] font-bold px-4 py-2 rounded-lg">All menu</button>
+      <div class="relative w-full sm:w-64 md:w-72">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        </div>
+        <input type="text" placeholder="Cari disini...." 
+          class="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-slate-200 bg-white/90 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4F2E22]/20">
+      </div>
+      </div>
+
+      <!-- GRID MENU - PERSIS SEPERTI CONTOH (8 card) -->
+      <section class="grid gap-3 md:gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 mb-6 md:mb-8">
+      <!-- Americano -->
+      <button class="menu-card group flex flex-col items-center rounded-xl md:rounded-2xl border border-slate-200 bg-white p-2.5 md:p-3 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#4F2E22] hover:-translate-y-1 active:scale-95 active:shadow-lg active:border-[#4F2E22]">
+        <img src="assets/americano.jpeg" alt="Americano" class="h-[90px] md:h-[110px] w-[75px] md:w-[90px] rounded-lg md:rounded-[10px] border border-slate-200 object-cover transition-transform duration-300 group-hover:scale-110" />
+        <div class="mt-1.5 md:mt-2 text-xs md:text-[13px] font-semibold">Americano</div>
+        <div class="mb-1 text-[11px] md:text-[12px] font-bold text-amber-700">17K</div>
+        <div class="rounded-full border border-dashed border-slate-200 px-2 py-0.5 md:py-1 text-[10px] md:text-[11px] text-slate-500">Stok tersisa 12</div>
+      </button>
+
+      <!-- Americano Lemon -->
+      <button class="menu-card group flex flex-col items-center rounded-xl md:rounded-2xl border border-slate-200 bg-white p-2.5 md:p-3 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#4F2E22] hover:-translate-y-1 active:scale-95 active:shadow-lg active:border-[#4F2E22]">
+        <img src="assets/americano.jpeg" alt="Americano Lemon" class="h-[90px] md:h-[110px] w-[75px] md:w-[90px] rounded-lg md:rounded-[10px] border border-slate-200 object-cover transition-transform duration-300 group-hover:scale-110" />
+        <div class="mt-1.5 md:mt-2 text-xs md:text-[13px] font-semibold">Americano Lemon</div>
+        <div class="mb-1 text-[11px] md:text-[12px] font-bold text-amber-700">17K</div>
+        <div class="rounded-full border border-dashed border-slate-200 px-2 py-0.5 md:py-1 text-[10px] md:text-[11px] text-slate-500">Stok tersisa 4</div>
+      </button>
+
+      <!-- V60 -->
+      <button class="menu-card group flex flex-col items-center rounded-xl md:rounded-2xl border border-slate-200 bg-white p-2.5 md:p-3 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#4F2E22] hover:-translate-y-1 active:scale-95 active:shadow-lg active:border-[#4F2E22]">
+        <img src="assets/americano.jpeg" alt="V60" class="h-[90px] md:h-[110px] w-[75px] md:w-[90px] rounded-lg md:rounded-[10px] border border-slate-200 object-cover transition-transform duration-300 group-hover:scale-110" />
+        <div class="mt-1.5 md:mt-2 text-xs md:text-[13px] font-semibold">V60</div>
+        <div class="mb-1 text-[11px] md:text-[12px] font-bold text-amber-700">17K</div>
+        <div class="rounded-full border border-dashed border-slate-200 px-2 py-0.5 md:py-1 text-[10px] md:text-[11px] text-slate-500">Stok tersisa 8</div>
+      </button>
+
+      <!-- Vietnam Drip -->
+      <button class="menu-card group flex flex-col items-center rounded-xl md:rounded-2xl border border-slate-200 bg-white p-2.5 md:p-3 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#4F2E22] hover:-translate-y-1 active:scale-95 active:shadow-lg active:border-[#4F2E22]">
+        <img src="assets/americano.jpeg" alt="Vietnam Drip" class="h-[90px] md:h-[110px] w-[75px] md:w-[90px] rounded-lg md:rounded-[10px] border border-slate-200 object-cover transition-transform duration-300 group-hover:scale-110" />
+        <div class="mt-1.5 md:mt-2 text-xs md:text-[13px] font-semibold">Vietnam Drip</div>
+        <div class="mb-1 text-[11px] md:text-[12px] font-bold text-amber-700">18K</div>
+        <div class="rounded-full border border-dashed border-slate-200 px-2 py-0.5 md:py-1 text-[10px] md:text-[11px] text-slate-500">Stok tersisa 6</div>
+      </button>
+
+      <!-- Americano (duplicate) -->
+      <button class="menu-card group flex flex-col items-center rounded-xl md:rounded-2xl border border-slate-200 bg-white p-2.5 md:p-3 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#4F2E22] hover:-translate-y-1 active:scale-95 active:shadow-lg active:border-[#4F2E22]">
+        <img src="assets/americano.jpeg" alt="Americano" class="h-[90px] md:h-[110px] w-[75px] md:w-[90px] rounded-lg md:rounded-[10px] border border-slate-200 object-cover transition-transform duration-300 group-hover:scale-110" />
+        <div class="mt-1.5 md:mt-2 text-xs md:text-[13px] font-semibold">Americano</div>
+        <div class="mb-1 text-[11px] md:text-[12px] font-bold text-amber-700">17K</div>
+        <div class="rounded-full border border-dashed border-slate-200 px-2 py-0.5 md:py-1 text-[10px] md:text-[11px] text-slate-500">Stok tersisa 10</div>
+      </button>
+
+      <!-- Americano Lemon (duplicate) -->
+      <button class="menu-card group flex flex-col items-center rounded-xl md:rounded-2xl border border-slate-200 bg-white p-2.5 md:p-3 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#4F2E22] hover:-translate-y-1 active:scale-95 active:shadow-lg active:border-[#4F2E22]">
+        <img src="assets/americano.jpeg" alt="Americano Lemon" class="h-[90px] md:h-[110px] w-[75px] md:w-[90px] rounded-lg md:rounded-[10px] border border-slate-200 object-cover transition-transform duration-300 group-hover:scale-110" />
+        <div class="mt-1.5 md:mt-2 text-xs md:text-[13px] font-semibold">Americano Lemon</div>
+        <div class="mb-1 text-[11px] md:text-[12px] font-bold text-amber-700">17K</div>
+        <div class="rounded-full border border-dashed border-slate-200 px-2 py-0.5 md:py-1 text-[10px] md:text-[11px] text-slate-500">Stok tersisa 3</div>
+      </button>
+
+      <!-- V60 (duplicate) -->
+      <button class="menu-card group flex flex-col items-center rounded-xl md:rounded-2xl border border-slate-200 bg-white p-2.5 md:p-3 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#4F2E22] hover:-translate-y-1 active:scale-95 active:shadow-lg active:border-[#4F2E22]">
+        <img src="assets/americano.jpeg" alt="V60" class="h-[90px] md:h-[110px] w-[75px] md:w-[90px] rounded-lg md:rounded-[10px] border border-slate-200 object-cover transition-transform duration-300 group-hover:scale-110" />
+        <div class="mt-1.5 md:mt-2 text-xs md:text-[13px] font-semibold">V60</div>
+        <div class="mb-1 text-[11px] md:text-[12px] font-bold text-amber-700">17K</div>
+        <div class="rounded-full border border-dashed border-slate-200 px-2 py-0.5 md:py-1 text-[10px] md:text-[11px] text-slate-500">Stok tersisa 2</div>
+      </button>
+
+      <!-- Vietnam Drip (duplicate with red warning) -->
+      <button class="menu-card group flex flex-col items-center rounded-xl md:rounded-2xl border border-slate-200 bg-white p-2.5 md:p-3 text-center shadow-sm transition-all duration-300 hover:shadow-lg hover:border-[#4F2E22] hover:-translate-y-1 active:scale-95 active:shadow-lg active:border-[#4F2E22]">
+        <img src="assets/americano.jpeg" alt="Vietnam Drip" class="h-[90px] md:h-[110px] w-[75px] md:w-[90px] rounded-lg md:rounded-[10px] border border-slate-200 object-cover transition-transform duration-300 group-hover:scale-110" />
+        <div class="mt-1.5 md:mt-2 text-xs md:text-[13px] font-semibold">Vietnam Drip</div>
+        <div class="mb-1 text-[11px] md:text-[12px] font-bold text-amber-700">18K</div>
+        <div class="rounded-full border border-red-200 bg-red-50 px-2 py-0.5 md:py-1 text-[10px] md:text-[11px] font-semibold text-red-600">Stok tersisa 1</div>
+      </button>
+      </section>
+
+      <!-- KATEGORI - DILETAKKAN DI BAWAH GRID MENU (PERSIS YANG DIMINTA) -->
+      <div class="border-t border-slate-200 pt-4 md:pt-6 mt-2">
+      <div class="category-container">
+        <!-- Coffee -->
+        <div class="category-item">
+        <input type="radio" name="kategori" id="cat-coffee" class="category-radio" checked>
+        <label for="cat-coffee">
+          <div class="w-12 h-12 md:w-14 md:h-14 mb-2 flex items-center justify-center bg-[#F3E9DE] rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F2E22" stroke-width="1.5">
+            <path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/>
+          </svg>
+          </div>
+          <span class="font-medium text-stone-800 text-xs md:text-sm">Coffee</span>
+        </label>
+        </div>
+        <!-- Non Coffee -->
+        <div class="category-item">
+        <input type="radio" name="kategori" id="cat-noncoffee" class="category-radio">
+        <label for="cat-noncoffee">
+          <div class="w-12 h-12 md:w-14 md:h-14 mb-2 flex items-center justify-center bg-[#F3E9DE] rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F2E22" stroke-width="1.5">
+            <path d="M12 2a10 10 0 0 1 10 10c0 5-4 8-10 8-6 0-10-3-10-8 0-5 4-10 10-10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/>
+          </svg>
+          </div>
+          <span class="font-medium text-stone-800 text-xs md:text-sm">Non Coffee</span>
+        </label>
+        </div>
+        <!-- Coffee Milk -->
+        <div class="category-item">
+        <input type="radio" name="kategori" id="cat-milk" class="category-radio">
+        <label for="cat-milk">
+          <div class="w-12 h-12 md:w-14 md:h-14 mb-2 flex items-center justify-center bg-[#F3E9DE] rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F2E22" stroke-width="1.5">
+            <path d="M8 2h8M9 22h6M12 2v4M8 8h8"/><rect x="6" y="8" width="12" height="12" rx="2"/><path d="M18 12h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2"/>
+          </svg>
+          </div>
+          <span class="font-medium text-stone-800 text-xs md:text-sm">Coffee Milk</span>
+        </label>
+        </div>
+        <!-- Snack -->
+        <div class="category-item">
+        <input type="radio" name="kategori" id="cat-snack" class="category-radio">
+        <label for="cat-snack">
+          <div class="w-12 h-12 md:w-14 md:h-14 mb-2 flex items-center justify-center bg-[#F3E9DE] rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F2E22" stroke-width="1.5">
+            <path d="M12 2a3 3 0 0 0-3 3c0 2 3 5 3 5s3-3 3-5a3 3 0 0 0-3-3Z"/><path d="M5 12a7 7 0 0 1 14 0v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6Z"/><path d="M9 16v2"/><path d="M15 16v2"/>
+          </svg>
+          </div>
+          <span class="font-medium text-stone-800 text-xs md:text-sm">Snack</span>
+        </label>
+        </div>
+        <!-- Bottle -->
+        <div class="category-item">
+        <input type="radio" name="kategori" id="cat-bottle" class="category-radio">
+        <label for="cat-bottle">
+          <div class="w-12 h-12 md:w-14 md:h-14 mb-2 flex items-center justify-center bg-[#F3E9DE] rounded-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4F2E22" stroke-width="1.5">
+            <path d="M10 5v3c0 1.5-.5 3-2 4"/><path d="M14 5v3c0 1.5.5 3 2 4"/><path d="M5 11c0-1.5.5-3 2-4h10c1.5 1 2 2.5 2 4v8c0 1.5-1 2-2 2H7c-1 0-2-.5-2-2v-8Z"/><path d="M9 13v4"/><path d="M15 13v4"/>
+          </svg>
+          </div>
+          <span class="font-medium text-stone-800 text-xs md:text-sm">Bottle</span>
+        </label>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  <!-- ================= WRAPPER ================= -->
+  <div class="md:col-span-5 lg:col-span-4 bg-white rounded-2xl shadow-xl border border-slate-300 flex flex-col p-4 h-screen max-h-[800px] sticky top-24">
+
+    <!-- ================= HEADER ================= -->
+    <h1 class="text-2xl font-bold text-center pb-2 border-b border-slate-200">
+      Checkout
+    </h1>
+
+    <!-- ================= LIST ITEM ================= -->
+    <!-- Ini akan diisi oleh JavaScript, kosong di awal -->
+    <div class="mt-3 flex-1 overflow-y-auto space-y-3 pr-1 scroll-order" id="order-list-container">
+      <!-- Konten akan dirender oleh JavaScript -->
+    </div>
+
+    <!-- ================= TOTAL ================= -->
+    <div class="mt-4 space-y-1.5 bg-slate-50 p-3 rounded-xl border">
+
+      <div class="flex justify-between text-sm">
+        <span class="text-slate-600">Discount (%)</span>
+        <span class="font-mono bg-white px-2 py-0.5 rounded border">100</span>
+      </div>
+
+      <div class="flex justify-between text-sm">
+        <span class="text-slate-600">Sub total</span>
+        <span id="subtotal-val">Rp 0</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-slate-600">Service</span>
+        <span>Rp 0</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-slate-600">Tax 5%</span>
+        <span id="tax-val">Rp 5</span>
+      </div>
+
+      <div class="flex justify-between text-lg font-bold border-t pt-2 mt-1">
+        <span>Total</span>
+        <span class="text-[#4F2E22]" id="total-val">Rp 5</span>
+      </div>
+
+    </div>
+
+    <!-- ================= BUTTON PAY ================= -->
+    <button class="mt-3 w-full bg-[#4F2E22] hover:bg-[#3f251b] text-white font-bold py-3 rounded-xl text-lg shadow-md transition active:scale-95" id="pay-btn">
+      Bayar
+    </button>
+
+    <!-- ================= BUTTON ================= -->
+    <div class="mt-4 flex gap-3">
+      <button id="cancel-btn" class="flex-1 border-2 border-red-500 text-red-500 font-bold py-3 rounded-full text-lg transition hover:bg-red-50 active:scale-95">
+        CANCEL ORDER
+      </button>
+      <button id="hold-btn" class="flex-1 border-2 border-green-500 text-green-500 font-bold py-3 rounded-full text-lg transition hover:bg-green-50 active:scale-95">
+        HOLD ORDER
+      </button>
+    </div>
+
+  </div>
+  <!-- ================= END WRAPPER ================= -->
+
+</div>
+
+<script>
+  // ==================== FUNGSIONALITAS JAVASCRIPT (TANPA MENGUBAH STYLE) ====================
+  
+  // Data struktur order
+  let orders = [];
+  const orderListEl = document.getElementById('order-list-container');
+  
+  // Get total elements
+  const subtotalTextEl = document.getElementById('subtotal-val');
+  const taxTextEl = document.getElementById('tax-val');
+  const totalTextEl = document.getElementById('total-val');
+  
+  // Cart badge element
+  const cartBadge = document.getElementById('cart-badge');
+  
+  // Fungsi untuk update badge cart
+  function updateCartBadge() {
+    const savedOrders = JSON.parse(localStorage.getItem('heldOrders')) || [];
+    const count = savedOrders.length;
+    
+    if (count > 0) {
+      cartBadge.textContent = count;
+      cartBadge.classList.remove('hidden');
+    } else {
+      cartBadge.classList.add('hidden');
+    }
+  }
+  
+  // Menu item click handler
+  document.querySelectorAll('.menu-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Ambil nama dari elemen div kedua (setelah img)
+      const nameDiv = card.querySelector('div:nth-child(2)');
+      const name = nameDiv ? nameDiv.textContent : 'Menu';
+      
+      // Ambil harga dari elemen dengan class text-amber-700
+      const priceElement = card.querySelector('.text-amber-700');
+      let price = 17000; // default
+      if (priceElement) {
+        const priceText = priceElement.textContent;
+        // Konversi format "17K" atau "18K" ke number
+        const match = priceText.match(/(\d+)K/);
+        if (match) {
+          price = parseInt(match[1]) * 1000;
+        }
+      }
+      
+      // Cek if item sudah ada
+      const existingOrder = orders.find(o => o.name === name);
+      
+      if (existingOrder) {
+        existingOrder.qty++;
+      } else {
+        orders.push({ name, price, qty: 1 });
+      }
+      
+      renderOrderList();
+    });
+  });
+  
+  function renderOrderList() {
+    // Kosongkan container
+    orderListEl.innerHTML = '';
+    
+    if (orders.length === 0) {
+      // Tampilkan pesan kosong
+      const emptyDiv = document.createElement('div');
+      emptyDiv.className = 'text-center text-slate-400 py-8';
+      emptyDiv.textContent = 'Belum ada pesanan';
+      orderListEl.appendChild(emptyDiv);
+      updateTotal();
+      return;
+    }
+    
+    // Render setiap order
+    orders.forEach((order, index) => {
+      const rowDiv = document.createElement('div');
+      rowDiv.className = 'flex items-center justify-between text-sm';
+      
+      const itemTotal = order.price * order.qty;
+      
+      // Buat struktur HTML seperti contoh asli
+      rowDiv.innerHTML = `
+        <div class="flex items-center gap-2 flex-1">
+          <svg class="w-5 h-5 text-red-500 cursor-pointer delete-order" data-index="${index}" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-9l-1 1H5v2h14V4z"/>
+          </svg>
+          <span class="font-medium">${order.name}</span>
+        </div>
+        <div class="flex items-center gap-2 w-[90px] justify-center">
+          <button class="w-7 h-7 rounded-full border flex items-center justify-center active:scale-95 transition-transform qty-dec" data-index="${index}">−</button>
+          <span class="qty-display">${order.qty}</span>
+          <button class="w-7 h-7 rounded-full border flex items-center justify-center active:scale-95 transition-transform qty-inc" data-index="${index}">+</button>
+        </div>
+        <div class="w-[90px] text-right font-medium">Rp ${itemTotal.toLocaleString('id-ID')}</div>
+      `;
+      
+      orderListEl.appendChild(rowDiv);
+    });
+    
+    // Attach event listeners untuk delete
+    document.querySelectorAll('.delete-order').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const index = parseInt(e.currentTarget.dataset.index);
+        if (!isNaN(index) && index >= 0 && index < orders.length) {
+          orders.splice(index, 1);
+          renderOrderList();
+        }
+      });
+    });
+    
+    // Attach event listeners untuk increment
+    document.querySelectorAll('.qty-inc').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const index = parseInt(e.currentTarget.dataset.index);
+        if (!isNaN(index) && index >= 0 && index < orders.length) {
+          orders[index].qty++;
+          renderOrderList();
+        }
+      });
+    });
+    
+    // Attach event listeners untuk decrement
+    document.querySelectorAll('.qty-dec').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const index = parseInt(e.currentTarget.dataset.index);
+        if (!isNaN(index) && index >= 0 && index < orders.length) {
+          if (orders[index].qty > 1) {
+            orders[index].qty--;
+          } else {
+            orders.splice(index, 1);
+          }
+          renderOrderList();
+        }
+      });
+    });
+    
+    updateTotal();
+  }
+  
+  function updateTotal() {
+    if (orders.length === 0) {
+      if (subtotalTextEl) subtotalTextEl.textContent = 'Rp 0';
+      if (taxTextEl) taxTextEl.textContent = 'Rp 0';
+      if (totalTextEl) totalTextEl.textContent = 'Rp 0';
+      return;
+    }
+    
+    const subtotal = orders.reduce((sum, o) => sum + (o.price * o.qty), 0);
+    const tax = Math.floor(subtotal * 0.05);
+    const total = subtotal + tax;
+    
+    if (subtotalTextEl) subtotalTextEl.textContent = `Rp ${subtotal.toLocaleString('id-ID')}`;
+    if (taxTextEl) taxTextEl.textContent = `Rp ${tax.toLocaleString('id-ID')}`;
+    if (totalTextEl) totalTextEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+  }
+  
+  // Payment button handler
+  const payBtn = document.getElementById('pay-btn');
+  
+  if (payBtn) {
+    payBtn.addEventListener('click', () => {
+      if (orders.length === 0) {
+        alert('Tambahkan pesanan terlebih dahulu!');
+        return;
+      }
+      showPaymentModal();
+    });
+  }
+  
+  function showPaymentModal() {
+    // Check existing modal
+    if (document.getElementById('payment-modal')) return;
+
+    const modal = document.createElement('div');
+    modal.id = 'payment-modal';
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    
+    // Calculate total for display
+    const subtotal = orders.reduce((sum, o) => sum + (o.price * o.qty), 0);
+    const tax = Math.floor(subtotal * 0.05);
+    const total = subtotal + tax;
+
+    modal.innerHTML = `
+      <div class="bg-white rounded-2xl p-6 w-96 shadow-2xl transform transition-all scale-100">
+        <h2 class="text-2xl font-bold text-center mb-2">Total: Rp ${total.toLocaleString('id-ID')}</h2>
+        <p class="text-center text-gray-500 mb-6">Pilih Metode Pembayaran</p>
+        <div class="flex gap-4">
+          <button class="flex-1 flex flex-col items-center gap-2 bg-amber-50 border-2 border-[#4F2E22] text-[#4F2E22] hover:bg-[#4F2E22] hover:text-white p-4 rounded-xl transition-colors" id="cash-btn">
+            <span class="material-symbols-outlined text-3xl">payments</span>
+            <span class="font-bold">CASH</span>
+          </button>
+          <button class="flex-1 flex flex-col items-center gap-2 bg-amber-50 border-2 border-[#4F2E22] text-[#4F2E22] hover:bg-[#4F2E22] hover:text-white p-4 rounded-xl transition-colors" id="qris-btn">
+            <span class="material-symbols-outlined text-3xl">qr_code_scanner</span>
+            <span class="font-bold">QRIS</span>
+          </button>
+        </div>
+        <button class="mt-6 w-full py-2 text-gray-400 hover:text-gray-600" id="close-pay-modal">Batal</button>
+      </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    document.getElementById('cash-btn').addEventListener('click', () => {
+      completePayment('CASH', total);
+      modal.remove();
+    });
+    
+    document.getElementById('qris-btn').addEventListener('click', () => {
+      completePayment('QRIS', total);
+      modal.remove();
+    });
+
+    document.getElementById('close-pay-modal').addEventListener('click', () => {
+      modal.remove();
+    });
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.remove();
+    });
+  }
+  
+  function completePayment(method, amount) {
+    alert(`Pembayaran ${method} sebesar Rp ${amount.toLocaleString('id-ID')} BERHASIL!`);
+    orders = [];
+    renderOrderList();
+    updateTotal();
+  }
+  
+  // Cancel button
+  const cancelBtn = document.getElementById('cancel-btn');
+  if (cancelBtn) {
+    cancelBtn.addEventListener('click', () => {
+      if (orders.length === 0) {
+        alert('Tidak ada pesanan untuk dibatalkan!');
+        return;
+      }
+      if (confirm('Batalkan seluruh pesanan?')) {
+        orders = [];
+        renderOrderList();
+        updateTotal();
+      }
+    });
+  }
+  
+  // Hold button logic
+  const holdBtn = document.getElementById('hold-btn');
+  if (holdBtn) {
+    holdBtn.addEventListener('click', () => {
+      if (orders.length === 0) {
+        alert('Tidak ada pesanan untuk di-hold!');
+        return;
+      }
+      
+      const savedOrders = JSON.parse(localStorage.getItem('heldOrders')) || [];
+      const holdId = Date.now();
+      
+      savedOrders.push({
+        id: holdId,
+        timestamp: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
+        items: orders.map(o => ({ ...o })), // copy array
+        totalRaw: orders.reduce((sum, o) => sum + (o.price * o.qty), 0)
+      });
+      
+      localStorage.setItem('heldOrders', JSON.stringify(savedOrders));
+      
+      alert('Pesanan masuk ke Cart!');
+      orders = [];
+      renderOrderList();
+      updateTotal();
+      updateCartBadge(); // Update badge setelah hold
+    });
+  }
+
+  // Cart Button Logic (Sidebar)
+  const cartLink = document.getElementById('cart-sidebar-link');
+  if (cartLink) {
+    cartLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showCartModal();
+    });
+  }
+
+  function showCartModal() {
+    // Check existing modal
+    if (document.getElementById('cart-modal')) return;
+
+    const savedOrders = JSON.parse(localStorage.getItem('heldOrders')) || [];
+
+    const modal = document.createElement('div');
+    modal.id = 'cart-modal';
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    
+    let contentHtml = '';
+    
+    if (savedOrders.length === 0) {
+      contentHtml = `
+        <div class="text-center py-8">
+          <p class="text-gray-500 text-lg">Cart Kosong</p>
+          <p class="text-gray-400 text-sm">Belum ada pesanan yang di-hold</p>
+        </div>
+      `;
+    } else {
+      contentHtml = `<div class="space-y-3 max-h-[60vh] overflow-y-auto pr-2">`;
+      savedOrders.forEach((order, idx) => {
+        const itemCount = order.items.reduce((acc, curr) => acc + curr.qty, 0);
+        contentHtml += `
+          <div class="border border-slate-200 rounded-xl p-3 hover:border-[#4F2E22] cursor-pointer transition flex justify-between items-center group bg-slate-50 hover:bg-white" onclick="restoreOrder(${idx})">
+            <div>
+              <div class="font-bold text-[#4F2E22]">Order #${idx + 1}</div>
+              <div class="text-xs text-gray-500">${order.timestamp} • ${itemCount} Items</div>
+            </div>
+            <div class="text-right">
+              <div class="font-bold">Rp ${order.totalRaw.toLocaleString('id-ID')}</div>
+              <div class="text-[10px] text-[#4F2E22] group-hover:underline">Klik untuk restore</div>
+            </div>
+          </div>
+        `;
+      });
+      contentHtml += `</div>`;
+    }
+
+    modal.innerHTML = `
+      <div class="bg-white rounded-2xl p-6 w-[400px] shadow-2xl relative">
+        <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          Daftar Hold / Cart
+        </h2>
+        <button id="close-cart-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        ${contentHtml}
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    document.getElementById('close-cart-btn').addEventListener('click', () => {
+      modal.remove();
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.remove();
+    });
+  }
+
+  // Fungsi global agar bisa dipanggil dari HTML string onclick
+  window.restoreOrder = function(index) {
+    const savedOrders = JSON.parse(localStorage.getItem('heldOrders')) || [];
+    if (index >= 0 && index < savedOrders.length) {
+      if (orders.length > 0) {
+        if (!confirm('Meja kasir sedang terisi. Timpa pesanan saat ini dengan pesanan dari Cart?')) {
+          return;
+        }
+      }
+      
+      const selectedOrder = savedOrders[index];
+      orders = selectedOrder.items.map(item => ({ ...item })); // copy deep
+      
+      // Hapus dari saved
+      savedOrders.splice(index, 1);
+      localStorage.setItem('heldOrders', JSON.stringify(savedOrders));
+      
+      renderOrderList();
+      updateTotal();
+      updateCartBadge(); // Update badge setelah restore
+      
+      // Tutup modal cart
+      const modal = document.getElementById('cart-modal');
+      if (modal) modal.remove();
+    }
+  };
+  
+  // Initialize - tampilkan pesan kosong dan update badge
+  renderOrderList();
+  updateCartBadge(); // Cek localStorage saat load
+</script>
+</section>
+</section>
+
+<!-- Overlay -->
+<div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-20"></div>
+
+<script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebarBtn = document.getElementById('close-sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+
+    hamburgerBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
+    });
+
+    closeSidebarBtn.addEventListener('click', () => {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+    });
+
+    overlay.addEventListener('click', () => {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+</body>
+</html>
